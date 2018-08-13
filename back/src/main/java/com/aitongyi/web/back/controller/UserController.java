@@ -1,6 +1,7 @@
 package com.aitongyi.web.back.controller;
 
 import com.aitongyi.web.bean.User;
+import com.aitongyi.web.bean.Response;
 import com.aitongyi.web.cache.CacheKey;
 import com.aitongyi.web.cache.CacheService;
 import com.aitongyi.web.service.UserService;
@@ -13,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 用户请求处理器
@@ -51,5 +53,22 @@ public class UserController {
         }
 
         return "/index/index";
+    }
+
+
+    @RequestMapping(value = "/userLogin", method = RequestMethod.GET)
+    @ResponseBody
+    public String userLogin(String paras){
+
+        Response response = new Response();
+        response.setCode(200);
+        response.setData("");
+        response.setMessage("请求成功");
+        response.setError("");
+
+        System.out.println("前台传过来参数:"+paras);
+        String name = "18301019509";
+
+        return JSON.toJSONString(response);
     }
 }
